@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1099267586990",
+    "project_id": "inclob-588a3",
+    "storage_bucket": "inclob-588a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099267586990:android:10c9311d722949e75c263f",
+        "android_client_info": {
+          "package_name": "com.example.inclob"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO9ay5M7dDBcMWiIBCXHWrQ-2CJ0QKUMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
