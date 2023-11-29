@@ -2,11 +2,12 @@ package com.example.inclob
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.userProfileChangeRequest
@@ -24,6 +25,10 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = "Informasi Pribadi"
+        }
 
         auth = Firebase.auth
         etNama = findViewById(R.id.et_nama)
@@ -37,7 +42,6 @@ class RegisterActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
-
         btnRegister.setOnClickListener {
             if(etNama.text.isNotEmpty()&&etEmail.text.isNotEmpty()&&etPassword.text.isNotEmpty()){
                 register()
@@ -47,6 +51,13 @@ class RegisterActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_menu,menu)
+        return true
+    }
+
+
 
     private fun register() {
         val nama = etNama.text.toString()

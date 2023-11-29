@@ -1,0 +1,28 @@
+package com.example.inclob.data
+
+data class User(
+    var nama:String,
+    var email:String,
+    var username: String,
+    var password: String,
+    var tglLahir: String,
+    var noTelp: String,
+    var jenisKelamin:String,
+    val provinsi:String,
+    val kota: String,
+    val alamat: String,
+    val kecamatan: String,
+    val jenisDisabilitas: String,
+    val keteranganDisabilitas: String,
+    val posisi: String,
+    val perusahaan: String,
+    val thnMulaiKerja: String,
+    val blnMulaiKerja: String,
+    val thnSelesaiKerja: String,
+    val blnSelesaiKerja: String,
+    val sekolah: String,
+    val jurusan: String,
+    val gelar:String,
+    val thnMulaiSekolah: String,
+    val thnLulusSekolah: String,
+    )

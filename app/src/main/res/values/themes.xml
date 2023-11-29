@@ -5,5 +5,12 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="Theme.Beranda" parent="Theme.Material3.DayNight">
+        <!-- Konfigurasi tema lainnya di sini -->
+
+    </style>
+
+
     <style name="Theme.Inclob" parent="Base.Theme.Inclob" />
+
 </resources>
