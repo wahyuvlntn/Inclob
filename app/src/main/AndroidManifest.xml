@@ -16,15 +16,15 @@
         android:theme="@style/Theme.Inclob"
         tools:targetApi="31">
         <activity
-            android:name=".activity.PekerjaanActivity"
-            android:theme="@style/AppThemeWithActionBar"
-            android:exported="false" />
+            android:name=".activity.PelatihanActivity"
+            android:exported="false"
+            android:theme="@style/AppThemeWithActionBar"/>
         <activity
-            android:name=".PendaftaranActivity"
+            android:name=".activity.PekerjaanActivity"
             android:exported="false"
             android:theme="@style/AppThemeWithActionBar" />
         <activity
-            android:name=".TiruanActivity"
+            android:name=".PendaftaranActivity"
             android:exported="false"
             android:theme="@style/AppThemeWithActionBar" />
         <activity

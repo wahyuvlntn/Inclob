@@ -1,5 +1,7 @@
-package com.example.inclob.pekerjaanfrag
+package com.example.inclob.pelatihanFrag
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,10 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.inclob.R
-import com.example.inclob.data.Pekerjaan
+import com.example.inclob.data.Pelatihan
 import com.google.firebase.firestore.FirebaseFirestore
 
-class DetailPekerjaanFragment : Fragment() {
+
+class DetailPelatihanFragment : Fragment() {
     private var documentId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +31,13 @@ class DetailPekerjaanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_pekerjaan, container, false)
+        return inflater.inflate(R.layout.fragment_detail_pelatihan, container, false)
     }
 
     companion object {
         // Function to create a new instance of the fragment with the document ID as an argument
-        fun newInstance(documentId: String?): DetailPekerjaanFragment {
-            val fragment = DetailPekerjaanFragment()
+        fun newInstance(documentId: String?): DetailPelatihanFragment {
+            val fragment = DetailPelatihanFragment()
             val args = Bundle()
             args.putString("docId", documentId)
             fragment.arguments = args
@@ -45,34 +48,26 @@ class DetailPekerjaanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as? AppCompatActivity)?.supportActionBar?.apply {
-            title = "Detail Pekerjaan"
+            title = "Detail Pelatihan"
             // Tambahkan tombol kembali (optional)
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
 
         // Fetch data from Firestore using the document ID
-        documentId?.let { fetchPekerjaanDetails(it) }
+        documentId?.let { fetchPelatihanDetails(it) }
 
-        val btnLamar = view.findViewById<Button>(R.id.btn_lamar)
-        btnLamar.setOnClickListener {
-            val fragTwo = MelamarTahap1Fragment.newInstance(documentId)
-            val fragManager = fragmentManager
-
-            fragManager?.beginTransaction()?.apply {
-                replace(R.id.content,fragTwo, MelamarTahap1Fragment::class.java.simpleName)
-                addToBackStack(null)
-                commit()
-            }
+        val btnIkuti = view.findViewById<Button>(R.id.btn_ikuti)
+        btnIkuti.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.atmago.com/acara/pelatihan-bahasa-inggris-dasar-16-22-november-2021_d5877775-022f-4c03-a1ce-55042965aec6"))
+            startActivity(intent)
         }
-
-
     }
 
-    private fun fetchPekerjaanDetails(documentId: String) {
+    private fun fetchPelatihanDetails(documentId: String) {
         val firestore = FirebaseFirestore.getInstance()
 
-        firestore.collection("pekerjaan")
+        firestore.collection("pelatihan")
             .whereEqualTo("id",documentId)
             .get()
             .addOnSuccessListener { documents ->
@@ -86,33 +81,27 @@ class DetailPekerjaanFragment : Fragment() {
                 // Hanya mengambil satu dokumen karena seharusnya ID dokumen unik
                 val document = documents.documents[0]
 
-                // Map data dokumen ke model (gantilah Pekerjaan::class.java dengan kelas model yang sesuai)
-                val pekerjaan = document.toObject(Pekerjaan::class.java)
 
-                // Update TextView elements with data from the Pekerjaan model
-                view?.findViewById<TextView>(R.id.tv_title)?.text = pekerjaan?.title
-                val image = pekerjaan?.gambar
+                val pelatihan = document.toObject(Pelatihan::class.java)
+
+                view?.findViewById<TextView>(R.id.tv_title)?.text = pelatihan?.title
+                val image = pelatihan?.gambar
 
                 image.let {
                     // Menggunakan Glide untuk memuat gambar dari URL ke ImageView
-                    view?.findViewById<ImageView>(R.id.iv_pekerjaan)?.let { it1 ->
+                    view?.findViewById<ImageView>(R.id.iv_pelatihan)?.let { it1 ->
                         Glide.with(this)
                             .load(it)
                             .into(it1)
                     }
                 }
-                view?.findViewById<TextView>(R.id.tv_perusahaan)?.text = pekerjaan?.perusahaan
-                view?.findViewById<TextView>(R.id.tv_kota)?.text = pekerjaan?.kota
-                view?.findViewById<TextView>(R.id.tv_kategori)?.text = pekerjaan?.kategori
-                view?.findViewById<TextView>(R.id.tv_tempat)?.text = pekerjaan?.tempat
-                view?.findViewById<TextView>(R.id.tv_jenis)?.text = pekerjaan?.jenis
-                view?.findViewById<TextView>(R.id.tv_waktu)?.text = pekerjaan?.waktu
-                view?.findViewById<TextView>(R.id.tv_alamat)?.text = pekerjaan?.alamat
-                view?.findViewById<TextView>(R.id.tv_desk_pekerjaan)?.text = pekerjaan?.deskripsi
+
+                view?.findViewById<TextView>(R.id.tv_desk_pelatihan)?.text = pelatihan?.deskripsi
             }
             .addOnFailureListener { exception ->
                 // Handle error
                 // You might want to show an error message or log the exception
             }
     }
+
 }

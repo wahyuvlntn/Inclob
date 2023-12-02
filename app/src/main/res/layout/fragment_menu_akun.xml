@@ -29,9 +29,18 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="username"/>
+
+        <TextView
             android:id="@+id/tv_nama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:text="nama"/>
@@ -44,6 +53,34 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:text="email"/>
+
+        <TextView
+            android:id="@+id/tv_jenisKelamin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:text="jenis kelamin"/>
+
+        <TextView
+            android:id="@+id/tv_tglLahir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:text="tanggal lahir"/>
+
+        <TextView
+            android:id="@+id/tv_alamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:text="alamat"/>
+
 
         <Button
             android:id="@+id/btn_logout"

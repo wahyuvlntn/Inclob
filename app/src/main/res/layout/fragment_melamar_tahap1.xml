@@ -83,14 +83,115 @@
                 android:layout_gravity="center"
                 ></ImageView>
 
-            <ImageButton
-                android:layout_width="wrap_content"
-
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_pdf"
+                android:visibility="gone"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_btn_upload"
-                android:background="@color/white"
-                android:layout_marginVertical="20dp"
-                android:layout_gravity="center"></ImageButton>
+                app:cardCornerRadius="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="40dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="40dp"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_file"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/fileNameTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="64dp"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Example.pdf" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_x"
+                            app:layout_constraintBottom_toBottomOf="@+id/fileNameTextView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.768"
+                            app:layout_constraintStart_toEndOf="@+id/fileNameTextView"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.551" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/fileNameTextView"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="4dp"-->
+<!--                        android:layout_marginEnd="156dp"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        tools:text="UI/UX Designer" />-->
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center">-->
+
+                <ImageButton
+                    android:id="@+id/btn_upload"
+                    android:layout_width="wrap_content"
+                    android:contentDescription="Upload Button"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_upload"
+                    android:background="@color/white"
+                    android:layout_marginVertical="20dp"
+                    android:layout_gravity="center"></ImageButton>
+
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/fileNameTextView"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:visibility=""-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="14sp"-->
+<!--                        tools:text="Uploaded File: Example.pdf"/>-->
+
+
+
+
+
+
+            
+
+
+            
 
         </LinearLayout>
 

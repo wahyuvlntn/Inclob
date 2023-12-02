@@ -10,24 +10,13 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [InfoPribadiFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class InfoPribadiFragment : Fragment(R.layout.fragment_info_pribadi) {
     private lateinit var etTanggalLahir: EditText
-    private lateinit var viewModel: PendaftaranViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,17 +55,19 @@ class InfoPribadiFragment : Fragment(R.layout.fragment_info_pribadi) {
         val btnLanjut = view.findViewById<Button>(R.id.btn_lanjut)
         btnLanjut.setOnClickListener {
 
-            viewModel.saveUserData(
-                nama = etNama.text.toString().trim(),
-                username = etUsername.text.toString().trim(),
-                noTelp = etNoTelp.text.toString().trim(),
-                email = etEmail.text.toString().trim(),
-                password = etPassword.text.toString().trim(),
-                tglLahir = etTanggalLahir.text.toString().trim(),
-                jenisKelamin = acJenisKelamin.text.toString().trim()
-            )
+            //viewModel.nama = User(etNama.text.toString().trim())
+            val bundle = Bundle().apply {
+                putString("username", etUsername.text.toString())
+                putString("nama", etNama.text.toString())
+                putString("noTelp", etNoTelp.text.toString())
+                putString("email", etEmail.text.toString())
+                putString("password", etPassword.text.toString())
+                putString("tglLahir", etTanggalLahir.text.toString())
+                putString("jenisKelamin",acJenisKelamin.text.toString())
+            }
+            val fragFive = SelesaiFragment.newInstance(bundle)
 
-            val fragTwo = AlamatFragment()
+            val fragTwo = AlamatFragment.newInstance(bundle)
             val fragManager = fragmentManager
 
             fragManager?.beginTransaction()?.apply {
@@ -120,11 +111,17 @@ class InfoPribadiFragment : Fragment(R.layout.fragment_info_pribadi) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(requireActivity()).get(PendaftaranViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_info_pribadi, container, false)
     }
 
+    companion object {
+        fun newInstance(bundle: Bundle): InfoPribadiFragment {
+            val fragment = InfoPribadiFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
 
 
 

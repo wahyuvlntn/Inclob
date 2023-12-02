@@ -1,5 +1,6 @@
 package com.example.inclob.Adapter
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inclob.R
+import com.example.inclob.activity.PelatihanActivity
 import com.example.inclob.data.Pelatihan
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -48,7 +51,10 @@ class PelatihanAdapter(val context: Context) :
 
 
         holder.itemView.setOnClickListener {
-            // Tambahkan logika klik di sini jika diperlukan
+            Log.d("PelatihanAdapter", "Item Clicked, ID: ${pelatihan.id}")
+            val intent = Intent(context, PelatihanActivity::class.java)
+            intent.putExtra("doc_id",pelatihan.id)
+            ContextCompat.startActivity(context, intent, null)
         }
     }
 
@@ -79,6 +85,7 @@ class PelatihanAdapter(val context: Context) :
                 for (document in result) {
                     Log.d("FirestoreData", "Title: ${document.getString("title")}")
                     Log.d("FirestoreData", "Gambar: ${document.data}")
+                    val id = document.getString("id")
                     val title = document.getString("title")
                     // Mengakses URL dari referensi gambar
 
@@ -86,7 +93,7 @@ class PelatihanAdapter(val context: Context) :
                     Log.d("FirestoreData", "Gambar URL: $gambarUrl")
 
                     // Membuat objek Pelatihan dan menambahkannya ke list
-                    val pelatihan = Pelatihan(gambarUrl, title)
+                    val pelatihan = Pelatihan(id, gambarUrl, title)
                     pelatihanListFromFirestore.add(pelatihan)
                 }
                 // Memperbarui adapter setelah mendapatkan data

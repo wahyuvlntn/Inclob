@@ -7,30 +7,16 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [InfoDisabilitasFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class InfoDisabilitasFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,16 +29,25 @@ class InfoDisabilitasFragment : Fragment() {
         }
         val btnLanjut = view.findViewById<Button>(R.id.btn_lanjut)
 
-        val jenisDisabilitas = resources.getStringArray(R.array.jenis_disabilitas)
-        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,jenisDisabilitas)
+        val jenisDisabilitasData = resources.getStringArray(R.array.jenis_disabilitas)
+        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,jenisDisabilitasData)
         val acJenisDisabilitas = view.findViewById<AutoCompleteTextView>(R.id.ac_jenis_disabilitas)
         acJenisDisabilitas.setAdapter(arrayAdapter)
+        val etKeterangan = view.findViewById<EditText>(R.id.et_keterangan)
+
+
         btnLanjut.setOnClickListener {
-            val fragFour = PendidikanFragment()
+            val bundle = arguments
+            bundle?.putString("jenisDisabilitas", acJenisDisabilitas.text.toString())
+            bundle?.putString("keteranganDisabilitas", etKeterangan.text.toString())
+
+            val fragFour = bundle?.let { it1 -> PendidikanFragment.newInstance(it1) }
             val fragManager = fragmentManager
 
             fragManager?.beginTransaction()?.apply {
-                replace(R.id.fragment_main,fragFour, PendidikanFragment::class.java.simpleName)
+                if (fragFour != null) {
+                    replace(R.id.fragment_main,fragFour, PendidikanFragment::class.java.simpleName)
+                }
                 addToBackStack(null)
                 commit()
             }
@@ -63,29 +58,16 @@ class InfoDisabilitasFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_info_disabilitas, container, false)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InfoDisabilitasFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InfoDisabilitasFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance(bundle: Bundle): InfoDisabilitasFragment {
+            val fragment = InfoDisabilitasFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
+
+
 }

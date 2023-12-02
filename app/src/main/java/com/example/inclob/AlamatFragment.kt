@@ -7,19 +7,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AlamatFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AlamatFragment : Fragment() {
 
 
@@ -40,16 +32,28 @@ class AlamatFragment : Fragment() {
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, provinsi)
         val acProvinsi = view.findViewById<AutoCompleteTextView>(R.id.ac_provinsi)
         acProvinsi.setAdapter(arrayAdapter)
+        val etKota = view.findViewById<EditText>(R.id.et_kota)
+        val etKecamatan = view.findViewById<EditText>(R.id.et_kecamatan)
+        val etAlamat = view.findViewById<EditText>(R.id.et_alamat)
 
 
         val btnLanjut = view.findViewById<Button>(R.id.btn_lanjut)
 
         btnLanjut.setOnClickListener {
-            val fragThree = InfoDisabilitasFragment()
+            val bundle = arguments
+            bundle?.putString("provinsi", acProvinsi.text.toString())
+            bundle?.putString("kota", etKota.text.toString())
+            bundle?.putString("kecamatan", etKecamatan.text.toString())
+            bundle?.putString("alamat", etAlamat.text.toString())
+
+
+            val fragThree = bundle?.let { it1 -> InfoDisabilitasFragment.newInstance(it1) }
             val fragManager = fragmentManager
 
             fragManager?.beginTransaction()?.apply {
-                replace(R.id.fragment_main,fragThree, InfoDisabilitasFragment::class.java.simpleName)
+                if (fragThree != null) {
+                    replace(R.id.fragment_main,fragThree, InfoDisabilitasFragment::class.java.simpleName)
+                }
                 addToBackStack(null)
                 commit()
             }
@@ -64,22 +68,12 @@ class AlamatFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AlamatFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AlamatFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance(bundle: Bundle): AlamatFragment {
+            val fragment = AlamatFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
+
+
 }

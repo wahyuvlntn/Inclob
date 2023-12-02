@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".pekerjaanfrag.PeninjauanWawancaraFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="40dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/iv_pekerjaan"
+                        android:layout_width="88dp"
+                        android:layout_height="57dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:src="@drawable/ic_gambar"
+                        />
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/iv_pekerjaan"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="UI/UX Designer" />
+
+                    <TextView
+                        android:id="@+id/tv_perusahaan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="14sp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_title"
+                        app:layout_constraintStart_toStartOf="@id/tv_title"
+                        app:layout_constraintEnd_toEndOf="@id/tv_title"
+                        tools:text="PT Brawijaya"/>
+
+                    <TextView
+                        android:id="@+id/tv_kota"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="12sp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_perusahaan"
+                        app:layout_constraintStart_toStartOf="@id/tv_perusahaan"
+                        app:layout_constraintEnd_toEndOf="@id/tv_perusahaan"
+                        tools:text="Malang | On-site | Full-time"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_lamar_tahap_4"
+                android:layout_marginVertical="20dp"
+                android:layout_gravity="center"
+                ></ImageView>
+
+            <ImageButton
+                android:id="@+id/btn_upload"
+                android:layout_width="wrap_content"
+                android:contentDescription="Upload Button"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_wawancara_ditinjau"
+                android:background="@color/white"
+                android:layout_marginVertical="20dp"
+                android:layout_gravity="center"></ImageButton>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>
