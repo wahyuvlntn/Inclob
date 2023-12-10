@@ -3,6 +3,7 @@ package com.example.inclob
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -43,6 +44,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        //set status bar color
+        getWindow().setStatusBarColor(getResources().getColor(R.color.black))
 
         auth = Firebase.auth
 

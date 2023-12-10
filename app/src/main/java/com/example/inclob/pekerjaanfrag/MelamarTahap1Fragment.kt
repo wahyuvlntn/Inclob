@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -63,7 +64,7 @@ class MelamarTahap1Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         documentId?.let { fetchPekerjaanDetails(it) }
 
-        val btnUpload = view.findViewById<ImageButton>(R.id.btn_upload)
+        val btnUpload = view.findViewById<LinearLayout>(R.id.btn_upload)
         btnUpload.setOnClickListener {
             launcher.launch("application/pdf")
             btnUpload.visibility = View.GONE

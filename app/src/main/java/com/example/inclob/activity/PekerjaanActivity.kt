@@ -18,6 +18,7 @@ class PekerjaanActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pekerjaan)
+        getWindow().setStatusBarColor(getResources().getColor(R.color.black))
         auth = FirebaseAuth.getInstance()
         val docId = intent.getStringExtra("doc_id")
         val user = auth.currentUser

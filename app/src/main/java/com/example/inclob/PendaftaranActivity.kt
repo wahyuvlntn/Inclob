@@ -7,6 +7,7 @@ class PendaftaranActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pendaftaran)
+        getWindow().setStatusBarColor(getResources().getColor(R.color.black))
         supportActionBar?.title = "             Informasi Pribadi"
 
         // Tambahkan tombol kembali (optional)

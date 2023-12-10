@@ -25,6 +25,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        getWindow().setStatusBarColor(getResources().getColor(R.color.black))
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             title = "Informasi Pribadi"

@@ -44,12 +44,6 @@ class DetailPekerjaanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? AppCompatActivity)?.supportActionBar?.apply {
-            title = "Detail Pekerjaan"
-            // Tambahkan tombol kembali (optional)
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
-        }
 
         // Fetch data from Firestore using the document ID
         documentId?.let { fetchPekerjaanDetails(it) }

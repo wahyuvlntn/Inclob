@@ -9,7 +9,7 @@ class PelatihanActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pelatihan)
-
+        getWindow().setStatusBarColor(getResources().getColor(R.color.black))
         val docId = intent.getStringExtra("doc_id")
         val fragOne = DetailPelatihanFragment.newInstance(docId)
         supportFragmentManager.beginTransaction().apply {

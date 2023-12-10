@@ -50,16 +50,6 @@ class MenuPelatihanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        topAppBar = view.findViewById(R.id.topAppBar)
-        topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.iv_photo_profile -> {
-                    // Handle edit text press
-                    true
-                }
-                else -> false
-            }
-        }
         auth = Firebase.auth
 
         val recyclerViewPelatihan: RecyclerView = view.findViewById(R.id.rv_pelatihan)

@@ -2,5 +2,6 @@
 <resources>
     <style name="AppTitle" parent="TextAppearance.Material3.ActionBar.Title">
         <item name="fontFamily">@font/poppins_bold</item>
+        
     </style>
 </resources>
